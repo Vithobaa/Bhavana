@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bhavana | Copywriter</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      scroll-behavior: smooth;
+    }
+    .navbar-custom {
+      background-color: transparent;
+      transition: 0.3s;
+    }
+    .navbar-custom.scrolled {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .navbar-custom .nav-link {
+      color: #333;
+      font-weight: 500;
+      margin-left: 1rem;
+    }
+    .hero-section {
+      padding: 100px 0 60px;
+      background: linear-gradient(to right, #f3f4f6, #ffffff);
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn-custom {
+      background-color: #ff416c;
+      color: #fff;
+      border: none;
+    }
+    .btn-outline-custom {
+      border: 2px solid #ff416c;
+      color: #ff416c;
+    }
+    .btn-outline-custom:hover {
+      background-color: #ff416c;
+      color: #fff;
+    }
+    .profile-image {
+      width: 250px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .section-custom {
+      padding: 80px 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    .service-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .footer-custom {
+      background: #333;
+      color: #fff;
+      padding: 40px 0 20px;
+    }
+    .footer-custom .social-links a {
+      color: #fff;
+      margin-left: 15px;
+      font-size: 1.2rem;
+    }
+    .footer-custom .social-links a:hover {
+      color: #ff416c;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon bg-light p-2 rounded"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="container">
+    <div class="row align-items-center text-lg-start text-center">
+      <div class="col-lg-8">
+  <h1 class="hero-title">Hello, I'm <span class="gradient-text">Bhavana</span></h1>
+  <h2 class="h4 mb-3">Copywriter & Content Marketer</h2>
+  <div id="about-content" class="mb-3 text-muted"></div>
+
+  <div class="d-flex flex-wrap gap-3">
+    <button class="btn btn-custom" onclick="scrollToSection('contact')">
+      <i class="fas fa-rocket me-2"></i>Let's Work Together
+    </button>
+    <button class="btn btn-outline-custom" onclick="scrollToSection('services')">
+      View My Work
+    </button>
+    <a href="./Bhavana _Resume.pdf" download class="btn btn-outline-custom">
+      <i class="fas fa-download me-2"></i>Resume
+    </a>
+  </div>
+</div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <img src="./Screenshot (3).png" alt="Bhavana" class="img-fluid profile-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section-custom">
+  <div class="container">
+    <h2 class="section-title">My Services</h2>
+    <div class="row g-4" id="portfolio-projects">
+      <!-- Dynamic projects will appear here -->
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="section-custom bg-white">
+  <div class="container">
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="row g-4" id="review-list">
+      <!-- Dynamic reviews appear here -->
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section-custom bg-light">
+  <div class="container">
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form id="contactForm" method="POST" action="/send" >
+          <div class="row g-3">
+            <div class="col-md-6"><input type="text" class="form-control" name="name" placeholder="Your Name" required></div>
+            <div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="Your Email" required></div>
+            <div class="col-12"><input type="text" class="form-control" name="subject" placeholder="Subject" required></div>
+            <div class="col-12"><textarea class="form-control" rows="5" name="message" placeholder="Your Message" required></textarea></div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-custom"><i class="fas fa-rocket me-2"></i>Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-custom text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h4 class="gradient-text">Bhavana</h4>
+        <p class="mb-0">Crafting words that convert and stories that sell.</p>
+      </div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/bhavusrini/"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/rocksbythebrook?s=11"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/bhavana__srinivas"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2025 Bhavana. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAQFXl-yPFaia5ztMOkphxeuDRj6XKhi8g",
+    authDomain: "bhavana-portfolio-df129.firebaseapp.com",
+    projectId: "bhavana-portfolio-df129",
+    storageBucket: "bhavana-portfolio-df129.appspot.com",
+    messagingSenderId: "196730219110",
+    appId: "1:196730219110:web:9e1f89dc94325157249ba7",
+    measurementId: "G-DPJ9FES7V9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadAboutContent() {
+    const aboutRef = doc(db, "site", "about");
+    const docSnap = await getDoc(aboutRef);
+    if (docSnap.exists()) {
+      document.getElementById("about-content").textContent = docSnap.data().description || '';
+    }
+  }
+
+  async function loadProjects() {
+    const container = document.getElementById("portfolio-projects");
+    const querySnapshot = await getDocs(collection(db, "projects"));
+    querySnapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.className = "col-md-6 col-lg-3 d-flex";
+      div.innerHTML = `
+        <div class="service-card h-100 w-100">
+          <h5>${data.title}</h5>
+          <p>${data.description}</p>
+          <small>${data.tags?.join(", ") || ''}</small>
+          ${data.link ? `<a href="${data.link}" target="_blank" class="btn btn-sm btn-outline-custom mt-3">View Project</a>` : ''}
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  loadAboutContent();
+  loadProjects();
+
+  loadReviews();
+
+async function loadReviews() {
+  const list = document.getElementById("review-list");
+  const querySnapshot = await getDocs(collection(db, "reviews"));
+  querySnapshot.forEach(doc => {
+    const data = doc.data();
+    const col = document.createElement("div");
+    col.className = "col-md-6 col-lg-4";
+    col.innerHTML = `
+      <div class="service-card h-100 text-start">
+        <h6 class="mb-1">${data.name}</h6>
+        <p class="text-muted small mb-1">${data.message}</p>
+        <div>${'★'.repeat(data.stars || 0)}${'☆'.repeat(5 - (data.stars || 0))}</div>
+      </div>
+    `;
+    list.appendChild(col);
+  });
+}
+
+
+  // Navbar Scroll Effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar-custom');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+  
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const toastEl = document.getElementById('emailToast');
+    const toastMsg = document.getElementById('toastMessage');
+    const toast = new bootstrap.Toast(toastEl);
+
+    try {
+      const response = await fetch('/send', {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+      });
+
+      const text = await response.text();
+      toastMsg.textContent = text;
+      toastEl.classList.remove('bg-danger');
+      toastEl.classList.add('bg-success');
+    } catch (error) {
+      toastMsg.textContent = "Failed to send message.";
+      toastEl.classList.remove('bg-success');
+      toastEl.classList.add('bg-danger');
+    }
+
+    toast.show();
+    this.reset();
+  });
+</script>
+
+<!-- Global ScrollTo function for buttons -->
+<script>
+  function scrollToSection(id) {
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- Toast Container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="emailToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMessage">Message sent!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
