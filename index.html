@@ -4,332 +4,1229 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bhavana | Copywriter</title>
-
   <!-- Bootstrap CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #6366f1;
+      --secondary-color: #ec4899;
+      --accent-color: #8b5cf6;
+      --dark-color: #1e293b;
+      --light-color: #f8fafc;
+      --text-color: #334155;
+    }
+    
     body {
       font-family: 'Inter', sans-serif;
-      background: #f9f9f9;
+      background: var(--light-color);
+      color: var(--text-color);
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
+    
     .navbar-custom {
-      background-color: transparent;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
       transition: 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 1000;
     }
+    
     .navbar-custom.scrolled {
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
+    
     .navbar-custom .nav-link {
-      color: #333;
+      color: var(--dark-color);
       font-weight: 500;
-      margin-left: 1rem;
+      margin: 0 0.5rem;
+      position: relative;
+      transition: color 0.3s;
     }
+    
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
+    
+    .navbar-custom .nav-link:hover {
+      color: var(--primary-color);
+    }
+    
     .hero-section {
-      padding: 100px 0 60px;
-      background: linear-gradient(to right, #f3f4f6, #ffffff);
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+      z-index: 0;
+    }
+    
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
     }
+    
     .gradient-text {
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
     }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      color: #64748b;
+    }
+    
     .btn-custom {
-      background-color: #ff416c;
-      color: #fff;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      color: white;
       border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      transition: all 0.3s ease;
     }
+    
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(99, 102, 241, 0.4);
+      color: white;
+    }
+    
     .btn-outline-custom {
-      border: 2px solid #ff416c;
-      color: #ff416c;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 10px 28px;
+      font-weight: 600;
+      border-radius: 50px;
+      background: transparent;
+      transition: all 0.3s ease;
     }
+    
     .btn-outline-custom:hover {
-      background-color: #ff416c;
-      color: #fff;
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(99, 102, 241, 0.4);
     }
+    
+    .profile-image-container {
+      position: relative;
+      display: inline-block;
+    }
+    
     .profile-image {
-      width: 250px;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      object-fit: cover;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border: 8px solid white;
+      transition: all 0.5s ease;
     }
+    
+    .profile-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .profile-decoration {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px dashed var(--primary-color);
+      top: -15px;
+      left: -15px;
+      z-index: -1;
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
     .section-custom {
-      padding: 80px 0;
+      padding: 100px 0;
+      position: relative;
     }
+    
     .section-title {
       text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-      font-weight: 600;
+      margin-bottom: 60px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
     }
-    .service-card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
       text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      font-size: 1.1rem;
+      color: #64748b;
     }
-    .footer-custom {
-      background: #333;
-      color: #fff;
-      padding: 40px 0 20px;
+    
+    .service-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
     }
-    .footer-custom .social-links a {
-      color: #fff;
-      margin-left: 15px;
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover::before {
+      transform: translateX(0);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+    }
+    
+    .service-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--dark-color);
+    }
+    
+    .service-description {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    
+    .skill-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--dark-color);
+    }
+    
+    .skill-rating {
+      color: #fbbf24;
       font-size: 1.2rem;
     }
-    .footer-custom .social-links a:hover {
-      color: #ff416c;
+    
+    .experience-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      border-left: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .experience-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .experience-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--dark-color);
+    }
+    
+    .experience-company {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+    
+    .experience-duration {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
+    
+    .experience-description {
+      color: #64748b;
+      line-height: 1.7;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-image {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    
+    .project-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--dark-color);
+    }
+    
+    .project-description {
+      color: #64748b;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .project-tag {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary-color);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .review-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(99, 102, 241, 0.1);
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .review-content {
+      font-style: italic;
+      color: #64748b;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    
+    .review-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .review-author-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    
+    .review-author-info h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0;
+      color: var(--dark-color);
+    }
+    
+    .review-author-info p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 0;
+    }
+    
+    .review-rating {
+      color: #fbbf24;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+    
+    .footer-custom {
+      background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
+      color: white;
+      padding: 80px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-custom::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+      z-index: 0;
+    }
+    
+    .footer-custom::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      z-index: 0;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .footer-description {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+    
+    .footer-links h5 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links ul li a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-contact {
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+    
+    .footer-contact a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-contact a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 50px;
+      padding-top: 30px;
+      text-align: center;
+      color: #94a3b8;
+    }
+    
+    .scroll-container {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+    }
+    
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    
+    .scroll-container .service-card,
+    .scroll-container .project-card,
+    .scroll-container .review-card {
+      min-width: 300px;
+      scroll-snap-align: start;
+    }
+    
+    #helloText {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 10rem;
+      opacity: 0;
+      animation: helloDraw 1.5s ease;
+    }
+    
+    @keyframes helloDraw {
+      0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+      50% { opacity: 1; transform: scale(1.05) rotate(0deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    
+    @keyframes fadeZoomOut {
+      0%, 60% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.2); visibility: hidden; }
+    }
+    
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-control, .form-select {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+    }
+    
+    .shape-1 {
+      top: 10%;
+      left: 5%;
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      top: 60%;
+      left: 80%;
+      width: 60px;
+      height: 60px;
+      background: var(--secondary-color);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape-3 {
+      top: 30%;
+      left: 70%;
+      width: 100px;
+      height: 100px;
+      background: var(--accent-color);
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+      animation: float 7s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon bg-light p-2 rounded"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section id="home" class="hero-section">
-  <div class="container">
-    <div class="row align-items-center text-lg-start text-center">
-      <div class="col-lg-8">
-  <h1 class="hero-title">Hello, I'm <span class="gradient-text">Bhavana</span></h1>
-  <h2 class="h4 mb-3">Copywriter & Content Marketer</h2>
-  <div id="about-content" class="mb-3 text-muted"></div>
-
-  <div class="d-flex flex-wrap gap-3">
-    <button class="btn btn-custom" onclick="scrollToSection('contact')">
-      <i class="fas fa-rocket me-2"></i>Let's Work Together
-    </button>
-    <button class="btn btn-outline-custom" onclick="scrollToSection('services')">
-      View My Work
-    </button>
-    <a href="./Bhavana _Resume.pdf" download class="btn btn-outline-custom">
-      <i class="fas fa-download me-2"></i>Resume
-    </a>
-  </div>
-</div>
-
-      <div class="col-lg-4 mt-4 mt-lg-0">
-        <img src="./Screenshot (3).png" alt="Bhavana" class="img-fluid profile-image">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-color);">Bhavana</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- Services -->
-<section id="services" class="section-custom">
-  <div class="container">
-    <h2 class="section-title">My Services</h2>
-    <div class="row g-4" id="portfolio-projects">
-      <!-- Dynamic projects will appear here -->
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
     </div>
-  </div>
-</section>
-
-<!-- Reviews -->
-<section id="reviews" class="section-custom bg-white">
-  <div class="container">
-    <h2 class="section-title">What Clients Say</h2>
-    <div class="row g-4" id="review-list">
-      <!-- Dynamic reviews appear here -->
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content" data-aos="fade-right">
+          <h1 class="hero-title">Hello, I'm <span class="gradient-text">Bhavana</span></h1>
+          <h2 class="hero-subtitle">Copywriter & Content Marketer</h2>
+          <p class="hero-description" id="about-content">
+        
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#contact"><button class="btn btn-custom" onclick="scrollToSection('contact')">
+              <i class="fas fa-rocket me-2"></i>Let's Work Together
+            </button></a>
+            <a href="#services" class="btn btn-outline-custom">
+              View My Work
+            </a>
+            <a href="./Bhavana _Resume.pdf" download class="btn btn-outline-custom">
+              <i class="fas fa-download me-2"></i>Resume
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center" data-aos="fade-left">
+          <div class="profile-image-container">
+            <div class="profile-decoration"></div>
+            <img src="./Screenshot (3).png" alt="Bhavana" class="profile-image">
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact -->
-<section id="contact" class="section-custom bg-light">
-  <div class="container">
-    <h2 class="section-title">Let's Connect</h2>
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <form id="contactForm" method="POST" action="/send" >
-          <div class="row g-3">
-            <div class="col-md-6"><input type="text" class="form-control" name="name" placeholder="Your Name" required></div>
-            <div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="Your Email" required></div>
-            <div class="col-12"><input type="text" class="form-control" name="subject" placeholder="Subject" required></div>
-            <div class="col-12"><textarea class="form-control" rows="5" name="message" placeholder="Your Message" required></textarea></div>
-            <div class="col-12 text-center">
-              <button type="submit" class="btn btn-custom"><i class="fas fa-rocket me-2"></i>Send Message</button>
+  <!-- Skills Section -->
+  <section id="skills" class="section-custom">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Skills</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Here are some of my key skills and expertise areas
+      </p>
+      <div class="row g-4" id="skill-list">
+        <div class="loading-spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section -->
+  <section id="experience" class="section-custom bg-white">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        My professional journey and career highlights
+      </p>
+      <div id="experience-list">
+        <div class="loading-spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section-custom">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">My Services</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Professional services I offer to help your business grow
+      </p>
+      <div class="scroll-container" id="portfolio-projects">
+        <div class="loading-spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="section-custom bg-white">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">What Clients Say</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Testimonials from clients I've worked with
+      </p>
+      <div class="scroll-container" id="review-list">
+        <div class="loading-spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-custom">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Let's Connect</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Have a project in mind? Feel free to reach out!
+      </p>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="contact-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contactForm" method="POST" action="/send" >
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" rows="5" name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-custom">
+                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h3 class="footer-logo">Bhavana</h3>
+          <p class="footer-description">
+            Crafting words that convert and stories that sell. Professional copywriter and content marketer with a passion for creating compelling narratives.
+          </p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/bhavusrini/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/rocksbythebrook?s=11"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/bhavana__srinivas"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#services">Services</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#">Copywriting</a></li>
+              <li><a href="#">Content Strategy</a></li>
+              <li><a href="#">SEO Writing</a></li>
+              <li><a href="#">Social Media</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-links">
+            <h5>Contact Info</h5>
+            <div class="footer-contact">
+              <i class="fas fa-envelope me-2"></i> <a href="mailto:bhavu985@gmail.com">bhavu985@gmail.com</a>
+            </div>
+            <div class="footer-contact">
+              <i class="fas fa-map-marker-alt me-2"></i> Chennai, India
             </div>
           </div>
-        </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bhavana. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+    <div id="emailToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">Message sent successfully!</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Footer -->
-<footer class="footer-custom text-white">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <h4 class="gradient-text">Bhavana</h4>
-        <p class="mb-0">Crafting words that convert and stories that sell.</p>
-      </div>
-      <div class="col-md-6 text-md-end mt-3 mt-md-0">
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/bhavusrini/"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://x.com/rocksbythebrook?s=11"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/bhavana__srinivas"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-    <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-    <div class="text-center">
-      <p class="mb-0">&copy; 2025 Bhavana. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Firebase -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-  import { getFirestore, collection, getDocs, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAQFXl-yPFaia5ztMOkphxeuDRj6XKhi8g",
-    authDomain: "bhavana-portfolio-df129.firebaseapp.com",
-    projectId: "bhavana-portfolio-df129",
-    storageBucket: "bhavana-portfolio-df129.appspot.com",
-    messagingSenderId: "196730219110",
-    appId: "1:196730219110:web:9e1f89dc94325157249ba7",
-    measurementId: "G-DPJ9FES7V9"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  async function loadAboutContent() {
-    const aboutRef = doc(db, "site", "about");
-    const docSnap = await getDoc(aboutRef);
-    if (docSnap.exists()) {
-      document.getElementById("about-content").textContent = docSnap.data().description || '';
-    }
-  }
-
-  async function loadProjects() {
-    const container = document.getElementById("portfolio-projects");
-    const querySnapshot = await getDocs(collection(db, "projects"));
-    querySnapshot.forEach(doc => {
-      const data = doc.data();
-      const div = document.createElement("div");
-      div.className = "col-md-6 col-lg-3 d-flex";
-      div.innerHTML = `
-        <div class="service-card h-100 w-100">
-          <h5>${data.title}</h5>
-          <p>${data.description}</p>
-          <small>${data.tags?.join(", ") || ''}</small>
-          ${data.link ? `<a href="${data.link}" target="_blank" class="btn btn-sm btn-outline-custom mt-3">View Project</a>` : ''}
-        </div>
-      `;
-      container.appendChild(div);
-    });
-  }
-
-  loadAboutContent();
-  loadProjects();
-
-  loadReviews();
-
-async function loadReviews() {
-  const list = document.getElementById("review-list");
-  const querySnapshot = await getDocs(collection(db, "reviews"));
-  querySnapshot.forEach(doc => {
-    const data = doc.data();
-    const col = document.createElement("div");
-    col.className = "col-md-6 col-lg-4";
-    col.innerHTML = `
-      <div class="service-card h-100 text-start">
-        <h6 class="mb-1">${data.name}</h6>
-        <p class="text-muted small mb-1">${data.message}</p>
-        <div>${'★'.repeat(data.stars || 0)}${'☆'.repeat(5 - (data.stars || 0))}</div>
-      </div>
-    `;
-    list.appendChild(col);
-  });
-}
-
-
-  // Navbar Scroll Effect
-  window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar-custom');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   
-document.getElementById('contactForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const toastEl = document.getElementById('emailToast');
-    const toastMsg = document.getElementById('toastMessage');
-    const toast = new bootstrap.Toast(toastEl);
-
-    try {
-      const response = await fetch('/send', {
-        method: 'POST',
-        body: new URLSearchParams(formData),
-      });
-
-      const text = await response.text();
-      toastMsg.textContent = text;
-      toastEl.classList.remove('bg-danger');
-      toastEl.classList.add('bg-success');
-    } catch (error) {
-      toastMsg.textContent = "Failed to send message.";
-      toastEl.classList.remove('bg-success');
-      toastEl.classList.add('bg-danger');
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, getDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQFXl-yPFaia5ztMOkphxeuDRj6XKhi8g",
+      authDomain: "bhavana-portfolio-df129.firebaseapp.com",
+      projectId: "bhavana-portfolio-df129",
+      storageBucket: "bhavana-portfolio-df129.appspot.com",
+      messagingSenderId: "196730219110",
+      appId: "1:196730219110:web:9e1f89dc94325157249ba7",
+      measurementId: "G-DPJ9FES7V9"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out'
+    });
+    
+    // Load about content
+    async function loadAboutContent() {
+      const aboutRef = doc(db, "site", "about");
+      const docSnap = await getDoc(aboutRef);
+      const container = document.getElementById("about-content");
+      
+      if (docSnap.exists()) {
+        container.textContent = docSnap.data().description || '';
+      } else {
+        container.textContent = "I craft compelling stories and persuasive content that connects brands with their audience. With a passion for words and a strategic mindset, I help businesses communicate their message effectively.";
+      }
     }
-
-    toast.show();
-    this.reset();
-  });
-</script>
-
-<!-- Global ScrollTo function for buttons -->
-<script>
-  function scrollToSection(id) {
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<!-- Toast Container -->
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
-  <div id="emailToast" class="toast align-items-center text-white bg-success border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toastMessage">Message sent!</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
-  </div>
-</div>
-
+    
+    // Load projects
+    async function loadProjects() {
+      const container = document.getElementById("portfolio-projects");
+      container.innerHTML = '<div class="loading-spinner"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+      
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        container.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+          container.innerHTML = '<div class="text-center w-100">No projects found</div>';
+          return;
+        }
+        
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "project-card";
+          div.innerHTML = `
+            <img src="https://picsum.photos/seed/${doc.id}/400/200.jpg" alt="${data.title}" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">${data.title || 'Untitled Project'}</h3>
+              <p class="project-description">${data.description || 'No description available'}</p>
+              <div class="project-tags">
+                ${(data.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+              </div>
+              ${data.link ? `<a href="${data.link}" target="_blank" class="btn btn-sm btn-outline-custom">View Project</a>` : ''}
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error loading projects: ", error);
+        container.innerHTML = '<div class="text-center w-100 text-danger">Error loading projects</div>';
+      }
+    }
+    
+    // Load reviews
+    async function loadReviews() {
+      const list = document.getElementById("review-list");
+      list.innerHTML = '<div class="loading-spinner"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+      
+      try {
+        const querySnapshot = await getDocs(collection(db, "reviews"));
+        list.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+          list.innerHTML = '<div class="text-center w-100">No reviews found</div>';
+          return;
+        }
+        
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const col = document.createElement("div");
+          col.className = "review-card";
+          col.innerHTML = `
+            <p class="review-content">${data.message || 'No review message'}</p>
+            <div class="review-author">
+              <img src="https://picsum.photos/seed/${doc.id}/100/100.jpg" alt="${data.name}" class="review-author-image">
+              <div class="review-author-info">
+                <h5>${data.name || 'Anonymous'}</h5>
+                <p>Client</p>
+                <div class="review-rating">${'★'.repeat(data.stars || 0)}${'☆'.repeat(5 - (data.stars || 0))}</div>
+              </div>
+            </div>
+          `;
+          list.appendChild(col);
+        });
+      } catch (error) {
+        console.error("Error loading reviews: ", error);
+        list.innerHTML = '<div class="text-center w-100 text-danger">Error loading reviews</div>';
+      }
+    }
+    
+    // Load skills
+    async function loadSkills() {
+      const container = document.getElementById("skill-list");
+      container.innerHTML = '<div class="loading-spinner"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+      
+      try {
+        const querySnapshot = await getDocs(collection(db, "skills"));
+        container.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+          container.innerHTML = '<div class="text-center w-100">No skills found</div>';
+          return;
+        }
+        
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "col-md-6 col-lg-4";
+          div.innerHTML = `
+            <div class="skill-card">
+              <h3 class="skill-name">${data.name || 'Unnamed Skill'}</h3>
+              <div class="skill-rating">${'★'.repeat(data.stars || 0)}${'☆'.repeat(5 - (data.stars || 0))}</div>
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error loading skills: ", error);
+        container.innerHTML = '<div class="text-center w-100 text-danger">Error loading skills</div>';
+      }
+    }
+    
+    // Load experience
+    async function loadExperience() {
+      const container = document.getElementById("experience-list");
+      container.innerHTML = '<div class="loading-spinner"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+      
+      try {
+        const querySnapshot = await getDocs(collection(db, "experience"));
+        container.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+          container.innerHTML = '<div class="text-center w-100">No experience found</div>';
+          return;
+        }
+        
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "experience-card";
+          div.innerHTML = `
+            <h3 class="experience-title">${data.title || 'Untitled Position'}</h3>
+            <h4 class="experience-company">@ ${data.company || 'Unknown Company'}</h4>
+            <p class="experience-duration">${data.duration || 'Unknown duration'}</p>
+            <p class="experience-description">${data.description || 'No description available'}</p>
+          `;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error loading experience: ", error);
+        container.innerHTML = '<div class="text-center w-100 text-danger">Error loading experience</div>';
+      }
+    }
+    
+    // Load all data
+    async function loadAllData() {
+      await Promise.all([
+        loadAboutContent(),
+        loadProjects(),
+        loadReviews(),
+        loadSkills(),
+        loadExperience()
+      ]);
+    }
+    
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAllData();
+    });
+    
+    // Contact form submission with Firebase
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const toastEl = document.getElementById('emailToast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toast = new bootstrap.Toast(toastEl);
+      
+      try {
+        // Save to Firebase
+        await addDoc(collection(db, "contacts"), {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+          timestamp: new Date()
+        });
+        
+        // Show success message
+        toastMsg.textContent = "Message sent successfully!";
+        toastEl.classList.remove('bg-danger');
+        toastEl.classList.add('bg-success');
+        toast.show();
+        
+        // Reset form
+        this.reset();
+      } catch (error) {
+        console.error("Error sending message: ", error);
+        toastMsg.textContent = "Failed to send message. Please try again.";
+        toastEl.classList.remove('bg-success');
+        toastEl.classList.add('bg-danger');
+        toast.show();
+      }
+    });
+    
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar-custom');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    // Global ScrollTo function for buttons
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Hide hello overlay after animation
+    window.addEventListener('load', () => {
+      const overlay = document.getElementById('helloOverlay');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 3000); // hide after animation
+    });
+  </script>
 </body>
 </html>
