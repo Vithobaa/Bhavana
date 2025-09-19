@@ -837,18 +837,27 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="section-custom">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">My Portfolio</h2>
-      <div class="scroll-container" id="portfolio-projects">
-        <div class="loading-spinner">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+ <section id="services" class="section-custom">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">My Portfolio</h2>
+
+    <div class="grid-container" id="portfolio-projects">
+      <div class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* responsive columns */
+    gap: 20px; /* spacing between items */
+  }
+</style>
 
   <!-- Reviews Section -->
   <section id="reviews" class="section-custom bg-white">
